@@ -1,6 +1,6 @@
 # VideoTube
 
-A YouTube clone built with PHP, MySQL, and JavaScript.
+A Clone of the VideoTube built with PHP, MySQL, and JavaScript.
 
 ## Getting Started
 
