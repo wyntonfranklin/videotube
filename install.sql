@@ -41,7 +41,7 @@ CREATE TABLE `subscribers` (
 
 
 CREATE TABLE `thumbnails` (
-                              `id` int(11) NOT NULL,
+                              `id` int(11) NOT NULL AUTO_INCREMENT,
                               `videoId` int(11) DEFAULT NULL,
                               `selected` int(11) DEFAULT NULL,
                               `filePath` varchar(125) DEFAULT NULL,

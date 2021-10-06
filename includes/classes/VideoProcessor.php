@@ -2,15 +2,15 @@
 class VideoProcessor {
 
     private $con;
-    private $sizeLimit = 500000000;
-    private $allowedTypes = array("mp4", "flv", "webm", "mkv", "vob", "ogv", "ogg", "avi", "wmv", "mov", "mpeg", "mpg");
+    private $sizeLimit = 5000000000;
+    private $allowedTypes = array("mp4");
     private $ffmpegPath;
     private $ffprobePath;
 
     public function __construct($con) {
         $this->con = $con;
-        $this->ffmpegPath = realpath("ffmpeg/bin/ffmpeg.exe");
-        $this->ffprobePath = realpath("ffmpeg/bin/ffprobe.exe");
+        $this->ffmpegPath = realpath(FM_PATH);
+        $this->ffprobePath = realpath(FP_PATH);
     }
 
     public function upload($videoUploadData) {
@@ -28,23 +28,27 @@ class VideoProcessor {
             return false;
         }
 
-        if(move_uploaded_file($videoData["tmp_name"], $tempFilePath)) {
-            $finalFilePath = $targetDir . uniqid() . ".mp4";
+        $finalFilePath = $targetDir . uniqid() . ".mp4";
+
+        if(move_uploaded_file($videoData["tmp_name"], $finalFilePath)) {
+
 
             if(!$this->insertVideoData($videoUploadData, $finalFilePath)) {
                 echo "Insert query failed";
                 return false;
             }
 
+            /*
             if(!$this->convertVideoToMp4($tempFilePath, $finalFilePath)) {
                 echo "Upload failed\n";
                 return false;
-            }
+            }*/
 
+            /*
             if(!$this->deleteFile($tempFilePath)) {
                 echo "Upload failed\n";
                 return false;
-            }
+            }*/
 
             if(!$this->generateThumbnails($finalFilePath)) {
                 echo "Upload failed - could not generate thumbnails\n";

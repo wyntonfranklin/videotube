@@ -58,7 +58,9 @@ function getInputValue($name) {
       </form>
 
     </div>
-    <a class="signInMessage" href="signUp.php">Don't have an account? Sign up here.</a>
+      <?php if(USER_REGISTRATION):?>
+            <a class="signInMessage" href="signUp.php">Don't have an account? Sign up here.</a>
+      <?Php endif; ?>
   </div>
 </div>
 

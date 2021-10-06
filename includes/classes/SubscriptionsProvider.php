@@ -21,13 +21,17 @@ class SubscriptionsProvider {
       while($i < sizeof($subscriptions)) {
 
         if($i == 0) {
-          $condition .= "WHERE uploadedBy=?";
+          $condition .= "WHERE (uploadedBy=?";
         } else {
           $condition .= " OR uploadedBy=?";
         }
         $i++;
       }
+      $condition .= ")";
 
+      if(!User::isLoggedIn()){
+      //    $condition .="(AND privacy=1)";
+      }
       $videoSql = "SELECT * FROM videos $condition ORDER BY uploadDate DESC";
       $videoQuery = $this->con->prepare($videoSql);
 

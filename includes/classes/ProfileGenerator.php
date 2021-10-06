@@ -33,8 +33,9 @@ class ProfileGenerator {
   public function createCoverPhotoSection() {
     $coverPhotoSrc = $this->profileData->getCoverPhoto();
     $name = $this->profileData->getProfileUserFullName();
+    // remove conver photo
     return "<div class='coverPhotoContainer'>
-              <img src='$coverPhotoSrc' class='coverPhoto'>
+              <img src='' class='coverPhoto'>
               <span class='channelName'>$name</span>
             </div>";
   }

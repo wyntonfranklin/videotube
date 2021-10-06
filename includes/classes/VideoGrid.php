@@ -31,7 +31,7 @@ class VideoGrid {
   }
 
   public function generateItems() {
-    $query = $this->con->prepare("SELECT * FROM videos ORDER BY RAND() LIMIT 15");
+    $query = $this->con->prepare("SELECT * FROM videos WHERE privacy=1 ORDER BY RAND() LIMIT 15");
     $query->execute();
 
     $elementsHtml = "";

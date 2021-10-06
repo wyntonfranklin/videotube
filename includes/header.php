@@ -49,9 +49,11 @@ $userLoggedInObj = new User($con, $usernameLoggedIn);
       </form>
     </div>
     <div class="rightIcons">
-      <a href="upload.php">
-        <img class="upload" src="assets/images/icons/upload.png">
-      </a>
+        <?php if(ANONYMOUS_POSTING== true || User::isLoggedIn()  ):?>
+          <a href="upload.php">
+            <img class="upload" src="assets/images/icons/upload.png">
+          </a>
+        <?php endif;?>
       <?php 
         echo ButtonProvider::createUserProfileNavigationButton($con, $userLoggedInObj->getUsername());
       ?>
