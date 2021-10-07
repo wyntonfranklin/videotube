@@ -1,20 +1,27 @@
 
 
 $(document).ready( function () {
-    $('#table').DataTable();
+    $('#table').DataTable({responsive: true});
 } );
 
 function deleteUserAction(id, username){
     if(id){
         var c = confirm("Are you sure you want to delete this user - " + username);
         if(c){
-            // take action here
+            $.post("ajax/removeAdminUser.php",{username: username}, function(response){
+                var rObject = getJsonResponseObject(response);
+                window.location.href = "userManagement.php";
+            });
         }
     }
 }
 
 function saveUserAction(){
-
+    var data = $('#userManagementForm').serialize();
+    $.post("ajax/saveAdminUser.php",data, function(response){
+        var rObject = getJsonResponseObject(response);
+        window.location.href = "userManagement.php";
+    });
 }
 
 function editUserAction(id, username){
@@ -31,9 +38,8 @@ function editUserAction(id, username){
                 $('#userManagementForm input[name="firstname"]').val(rObject.data.firstname);
                 $('#userManagementForm input[name="lastname"]').val(rObject.data.lastname);
                 $('#userManagementForm input[name="email"]').val(rObject.data.email);
-                $('#userManagementForm input[name="role"]').val(rObject.data.role);
+                $('#userManagementForm select[name="role"]').val(rObject.data.role);
                 $('#userManagementForm input[name="userid"]').val(rObject.data.userid);
-                console.log(rObject.data);
                 showModal("Edit this user");
             }
         });

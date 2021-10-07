@@ -14,6 +14,7 @@ class NavigationMenuProvider {
    $menuHtml .= $this->createNavItem("All Videos", "assets/images/icons/list.png", "allVideos.php");
     if(User::isLoggedIn()) {
       $menuHtml .= $this->createNavItem("Subscriptions", "assets/images/icons/subscriptions.png", "subscriptions.php");
+        $menuHtml .= $this->createNavItem("Playlists", "assets/images/icons/richlist.png", "playlists.php");
       $menuHtml .= $this->createNavItem("Liked Videos", "assets/images/icons/thumb-up.png", "likedVideos.php");
       $menuHtml .= $this->createNavItem("User Management", "assets/images/icons/group.png", "userManagement.php");
       $menuHtml .= $this->createNavItem("Settings", "assets/images/icons/settings.png", "settings.php");

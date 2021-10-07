@@ -7,6 +7,8 @@ $allVidsProvider = new AllVideosProvider($con, $userLoggedInObj);
 $videos = $allVidsProvider->getVideos();
 
 $videoGrid = new VideoGrid($con, $userLoggedInObj);
+$gridDeleteStatus = User::isLoggedIn();
+$videoGrid->setGridDeletable($gridDeleteStatus);
 ?>
 
     <div class="largeVideoGridContainer">

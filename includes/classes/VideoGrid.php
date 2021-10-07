@@ -4,10 +4,15 @@ class VideoGrid {
   private $con, $userLoggedInObj;
   private $largeMode = false;
   private $gridClass = "videoGrid";
+  private $gridCanDelete = false;
 
   public function __construct($con, $userLoggedInObj) {
     $this->con = $con;
     $this->userLoggedInObj = $userLoggedInObj;
+  }
+
+  public function setGridDeletable($val){
+      $this->gridCanDelete = $val;
   }
 
   public function create($videos, $title, $showFilter) {
@@ -49,6 +54,7 @@ class VideoGrid {
 
     foreach($videos as $video) {
       $item = new VideoGridItem($video, $this->largeMode);
+      $item->setItemAsDeletable($this->gridCanDelete);
       $elementsHtml .= $item->create();
     }
 

@@ -16,6 +16,9 @@ $allUsers = new UserListingProvider($con, $userLoggedInObj);
 
 $users = $allUsers->getUsersAsArray();
 ?>
+<style>
+
+</style>
 <script src="assets/js/userManagementActions.js?v=0.1"></script>
 
 <div class="settingsContainer column">
@@ -29,37 +32,43 @@ $users = $allUsers->getUsersAsArray();
         </div>
     </div>
 
-    <div class="formSection">
-        <table class="table" id="table">
-            <thead>
-            <tr>
-                <td>Username</td>
-                <td>First Name</td>
-                <td>Last Name</td>
-                <td>Role</td>
-                <td>Email</td>
-                <td>Created On</td>
-                <td>Actions</td>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach($users as $user):?>
-                <tr>
-                    <td><?php echo $user["username"];?></td>
-                    <td><?php echo $user["firstName"];?></td>
-                    <td><?php echo $user["lastName"];?></td>
-                    <td><span class="badge badge-secondary"><?php echo strtoupper($user["role"]);?></span></td>
-                    <td><?php echo $user["email"];?></td>
-                    <td><?php echo $user["signUpDate"];?></td>
-                    <td>
-                        <a data-id="" onclick="editUserAction(<?php echo $user["id"];?>, '<?php echo $user["username"];?>')"><img src="./assets/images/icons/edit.png" style="width: 20px;"></a>
-                        &nbsp;
-                        <a data-id="" onclick="deleteUserAction(<?php echo $user["id"];?>, '<?php echo $user["username"];?>')"><img src="./assets/images/icons/delete.png" style="width: 20px;"></a>
-                    </td>
-                </tr>
-            <?php endforeach;?>
-            </tbody>
-        </table>
+    <div class="">
+        <div class="">
+            <div class="row">
+                <div class="col">
+                    <table class="table" id="table">
+                        <thead>
+                        <tr>
+                            <td>Username</td>
+                            <td>First Name</td>
+                            <td>Last Name</td>
+                            <td>Role</td>
+                            <td>Email</td>
+                            <td>Created On</td>
+                            <td>Actions</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($users as $user):?>
+                            <tr>
+                                <td><?php echo $user["username"];?></td>
+                                <td><?php echo $user["firstName"];?></td>
+                                <td><?php echo $user["lastName"];?></td>
+                                <td><span class="badge badge-secondary"><?php echo strtoupper($user["role"]);?></span></td>
+                                <td><?php echo $user["email"];?></td>
+                                <td><?php echo $user["signUpDate"];?></td>
+                                <td>
+                                    <a href="javascript:void(0);" onclick="editUserAction(<?php echo $user["id"];?>, '<?php echo $user["username"];?>')"><img src="./assets/images/icons/edit.png" style="width: 20px;"></a>
+                                    &nbsp;
+                                    <a href="javascript:void(0);" onclick="deleteUserAction(<?php echo $user["id"];?>, '<?php echo $user["username"];?>')"><img src="./assets/images/icons/delete.png" style="width: 20px;"></a>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
     </div>
 
@@ -80,6 +89,7 @@ $users = $allUsers->getUsersAsArray();
                         <input type="hidden" class="form-control" placeholder="" name="userid">
                         <label>Username</label>
                         <input type="text" class="form-control" placeholder="Username" name="username">
+                        <small class="form-text text-danger">Username cannot be changed by update</small>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
@@ -94,7 +104,10 @@ $users = $allUsers->getUsersAsArray();
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label>Role</label>
-                            <input type="text" class="form-control" placeholder="Role" name="role">
+                            <select class="form-control" name="role">
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Email</label>

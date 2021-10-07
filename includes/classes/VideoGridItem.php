@@ -2,22 +2,32 @@
 class VideoGridItem {
 
   private $video, $largeMode;
+  private $canDelete = false;
+
   public function __construct($video, $largeMode) {
     $this->video = $video;
     $this->largeMode = $largeMode;
   }
+
+  public function setItemAsDeletable($val){
+        $this->canDelete = $val;
+  }
+
 
   public function create() {
     $thumbnail = $this->createThumbnail();
     $details = $this->createDetails();
     $url = "watch.php?id=" . $this->video->getId();
 
-    return "<a href='$url'>
+    $o = "<a href='$url'>
               <div class='videoGridItem'>
                 $thumbnail
-                $details
-              </div>
-            </a>";
+                $details";
+    if($this->canDelete){
+        $o .= "<div style='float: right'>Delete</div>";
+    }
+    $o .= "</div></a>";
+    return $o;
   }
 
   private function createThumbnail() {

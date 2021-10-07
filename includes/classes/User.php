@@ -93,5 +93,33 @@ class User {
     return $subs;
 
   }
+
+  public function updateDetails($userId, $firstname, $lastname, $email, $role, $password) {
+    if($password){
+      $query = $this->con->prepare("UPDATE users SET firstname=:firstname, 
+                 lastname=:lastname, email=:email, role=:role, password=:password WHERE id=:userId");
+    }else{
+      $query = $this->con->prepare("UPDATE users SET firstname=:firstname, 
+                 lastname=:lastname, email=:email, role=:role WHERE id=:userId");
+    }
+    $query->bindParam(":firstname", $firstname);
+    $query->bindParam(":lastname", $lastname);
+    $query->bindParam(":email", $email);
+    $query->bindParam(":role", $role);
+    if($password){
+      $pw = hash("sha512", $password);
+      $query->bindParam(":password", $pw);
+    }
+    $query->bindParam(":userId", $userId);
+    return $query->execute();
+  }
+
+  public function removeUser() {
+    $query = $this->con->prepare("DELETE FROM users WHERE username=:username");
+    $query->bindParam(":username", $this->getUsername());
+    return $query->execute();
+  }
+
+
 }
 ?> 
