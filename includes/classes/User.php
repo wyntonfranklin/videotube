@@ -18,12 +18,26 @@ class User {
     return isset($_SESSION["userLoggedIn"]);
   }
 
+  public function getUserId(){
+    return $this->sqlData["id"];
+  }
+
   public function getUsername() {
-    return $this->sqlData["username"];
+    if(isset($this->sqlData["username"])){
+      return $this->sqlData["username"];
+    }
+    return "NA";
   }
 
   public function getName() {
-    return $this->sqlData["firstName"] . " " . $this->sqlData["lastName"];
+    if(isset($this->sqlData["firstName"])){
+      return $this->sqlData["firstName"] . " " . $this->sqlData["lastName"];
+    }
+    return "NA";
+  }
+
+  public function getRole(){
+    return $this->sqlData["role"];
   }
 
   public function getFirstName() {

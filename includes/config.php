@@ -4,7 +4,7 @@
  const FM_PATH = "./extensions/ffmpeg/bin/ffmpeg.exe";
  const FP_PATH = "./extensions/ffmpeg/bin/ffprobe.exe";
  const ANONYMOUS_POSTING = false;
- const USER_REGISTRATION = false;
+ const USER_REGISTRATION = true;
 
   ob_start(); // Turns on output buffering
   session_start();

@@ -43,7 +43,7 @@ function getInputValue($name) {
 <div class="signInContainer">
   <div class="column">
     <div class="header">
-      <img src="assets/images/icons/VideoTubeLogo.png" title="Logo" alt="Site logo">
+      <a href="index.php"><img src="assets/images/icons/VideoTubeLogo.png" title="Logo" alt="Site logo"></a>
       <h3>Sign In</h3>
 
     </div>
