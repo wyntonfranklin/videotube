@@ -1,6 +1,7 @@
 <?php 
 require_once("includes/config.php"); 
 require_once("includes/classes/Account.php");
+require_once("includes/classes/User.php");
 require_once("includes/classes/Constants.php"); 
 require_once("includes/classes/FormSanitizer.php"); 
 
@@ -15,6 +16,8 @@ if(isset($_POST["submitButton"])) {
   
   if($wasSuccessful) {
       $_SESSION["userLoggedIn"] = $username;
+      $user = new User($con, $username);
+      $_SESSION["userRole"] = $user->getRole();
       header("Location: index.php");
   }
 }

@@ -23,7 +23,7 @@ class VideoGridItem {
               <div class='videoGridItem'>
                 $thumbnail
                 $details";
-    if($this->canDelete){
+    if($this->canDelete && User::isUserAdmin()){
         $o .= "<div style='float: right'>Delete</div>";
     }
     $o .= "</div></a>";

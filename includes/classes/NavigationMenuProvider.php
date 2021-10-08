@@ -16,7 +16,9 @@ class NavigationMenuProvider {
       $menuHtml .= $this->createNavItem("Subscriptions", "assets/images/icons/subscriptions.png", "subscriptions.php");
         $menuHtml .= $this->createNavItem("Playlists", "assets/images/icons/richlist.png", "playlists.php");
       $menuHtml .= $this->createNavItem("Liked Videos", "assets/images/icons/thumb-up.png", "likedVideos.php");
-      $menuHtml .= $this->createNavItem("User Management", "assets/images/icons/group.png", "userManagement.php");
+      if(User::isUserAdmin()){
+          $menuHtml .= $this->createNavItem("User Management", "assets/images/icons/group.png", "userManagement.php");
+      }
       $menuHtml .= $this->createNavItem("Settings", "assets/images/icons/settings.png", "settings.php");
       $menuHtml .= $this->createNavItem("Log Out", "assets/images/icons/logout.png", "logout.php");
 

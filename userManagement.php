@@ -89,7 +89,7 @@ $users = $allUsers->getUsersAsArray();
                         <input type="hidden" class="form-control" placeholder="" name="userid">
                         <label>Username</label>
                         <input type="text" class="form-control" placeholder="Username" name="username">
-                        <small class="form-text text-danger">Username cannot be changed by update</small>
+                        <small class="form-text text-danger">Username cannot be changed after creation</small>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">

@@ -18,6 +18,17 @@ class User {
     return isset($_SESSION["userLoggedIn"]);
   }
 
+  public static function isUserAdmin()
+  {
+    if(self::isLoggedIn()){
+       if(isset($_SESSION["userRole"]) && $_SESSION["userRole"] == "admin"){
+         return true;
+       }
+    }
+    return false;
+
+  }
+
   public function getUserId(){
     return $this->sqlData["id"];
   }
